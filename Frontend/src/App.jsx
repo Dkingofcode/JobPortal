@@ -6,6 +6,15 @@ import './App.css'
 //import Employer from './components/Employer';
 //import JobSeeker from './components/JobSeeker';
 import Header from './UI/Header';
+import Footer from './UI/Footer';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import Profile from './components/JobSeeker/Profile';
+import Home from './Pages/Home';
+import PostJob from './components/Employer/PostJob';
+import Jobs from './Pages/Jobs';
+import Signup from './components/Auth/Signup';
+//import { createBrowserHistory } from 'history';
+
 
 function App() {
   const [count, setCount] = useState(0)
@@ -16,7 +25,7 @@ function App() {
   // };
   
   return (
-    <>
+    <Router>
       <div>        
             <>
               {/* <div>
@@ -27,9 +36,18 @@ function App() {
             </>
 
            <Header />
-      
+           <Routes>
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/" element={<Home />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/post-jobs" element={<PostJob />} />
+              <Route path="/jobs" element={<Jobs />} />
+           </Routes>
+           
+           <Footer />
+    
       </div>
-    </>
+    </Router>
   )
 }
 

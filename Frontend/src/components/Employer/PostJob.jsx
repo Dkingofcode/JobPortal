@@ -8,7 +8,7 @@ const PostJob = () => {
         e.preventDefault();
 
         try{
-            await axios.post('/api/employer/jobs', job);
+            await axios.post('/api/employer/job', job);
             alert('Job posted successfully!');
         } catch (error) {
             console.error(error);

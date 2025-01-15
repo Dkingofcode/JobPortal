@@ -5,7 +5,7 @@ import Logo from '../assets/logo-with tag.png';
 const Header = () => {
   return (
     <header className="bg-gray-100 shadow">
-      <div className="container bg-red-800 mx-auto px-4 py-3 flex justify-between items-center">
+      <div className="container bg-gray-300 mx-auto px-4 py-3 flex justify-between items-center">
         {/* Logo or Brand Name */}
         <a href="#" className="text-2xl font-bold text-gray-800"><img src={Logo} alt='logo image' /></a>
 
@@ -15,13 +15,13 @@ const Header = () => {
             href="#"
             className="text-gray-700 hover:text-blue-500 font-medium transition"
           >
-            Career Fair
+            Create Profile
           </a>
           <a
             href="#"
             className="text-gray-700 hover:text-blue-500 font-medium transition"
           >
-            Skills Test
+            Post Jobs
           </a>
           <a
             href="#"
@@ -32,31 +32,34 @@ const Header = () => {
           <a
             href="#"
             className="text-gray-700 hover:text-blue-500 font-medium transition"
-          >
+            >
             Services
           </a>
+              </nav>
+              
 
-          <a
+         <div className='hidden md:flex space-x-8'>
+          <button
             href="#"
-            className="text-gray-700 hover:text-blue-500 font-medium transition"
-          >
+            className="text-gray-700  font-bold transition"
+            >
             Login
-          </a>
+          </button>
 
-          <a
+          <button
             href="#"
-            className="text-gray-700 hover:text-blue-500 font-medium transition"
-          >
+            className="text-purple-700  font-bold border border-purple-400 p-2 rounded-md transition"
+            >
             Resume Builder
-          </a>
+          </button>
 
-          <a
+          <button
             href="#"
-            className="text-gray-700 hover:text-blue-500 font-medium transition"
-          >
+            className="text-gray-50 bg-purple-600 border border-purple-600 font-bold p-2 rounded-md transition"
+            >
             Apply For Jobs
-          </a>
-        </nav>
+          </button>
+       </div>
 
         {/* Mobile Menu Button */}
         <button
