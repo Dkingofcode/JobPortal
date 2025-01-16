@@ -1,8 +1,15 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-
+//import { navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
+    const navigate = useNavigate();
+
+    const api = axios.create({
+        baseURL: 'http://localhost:5000', // Replace with your backend URL
+      });
+
     const [formData, setFormData] = useState({
         username: '',
         email: '',
@@ -21,13 +28,13 @@ const Signup = () => {
      const  handleSubmit = async (e) => {
         e.preventDefault();
         // Add form submission logic here
-        const result = await axios.post('/api/signup', formData);
-        result.then(response => {
-            console.log('Signup successful', response.data);
-        }).catch(error => {
+        try { 
+        const result = await api.post('http://localhost:5000/api/signup', formData); 
+            console.log('Signup successful', result.data);
+        }catch(error) {
             console.error('There was an error signing up!', error);
-        });
-
+        };
+        navigate('/login');
         console.log('Form submitted', formData);
     };
 
