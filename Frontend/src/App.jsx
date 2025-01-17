@@ -8,9 +8,9 @@ import './App.css'
 import Header from './UI/Header';
 import Footer from './UI/Footer';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import Profile from './components/JobSeeker/Profile';
+import Profile from './Pages/Profile';
 import Home from './Pages/Home';
-import PostJob from './components/Employer/PostJob';
+import PostJob from './Pages/CreateJob';
 import Jobs from './Pages/Jobs';
 import Signup from './components/Auth/Signup';
 import Login from "./components/Auth/Login";
@@ -22,8 +22,8 @@ import ResetPassword from "./components/Auth/ResetPassword";
 
 
 function App() {
-  const [count, setCount] = useState(0);
-  const [userType, setUserType] = useState(null);
+  //const [count, setCount] = useState(0);
+  //const [userType, setUserType] = useState(null);
 
   // const handleUserTypeChange = (type) => {
   //   setUserType(type);
@@ -59,7 +59,7 @@ function App() {
               <Route path="/reset-password" element={<PasswordValidation><ResetPassword /></PasswordValidation>} />
               <Route path="/" element={<PrivateRoute><Home /></PrivateRoute>} />
               <Route path="/profile" element={<PrivateRoute><Profile /></PrivateRoute>} />
-              <Route path="/post-jobs" element={<PrivateRoute><PostJob /></PrivateRoute>} />
+              <Route path="/post-job" element={<PrivateRoute><PostJob /></PrivateRoute>} />
               <Route path="/jobs" element={<PrivateRoute><Jobs /></PrivateRoute>} />
 
            </Routes>

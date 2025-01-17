@@ -17,7 +17,10 @@ router.post('/login', postLogin);
 router.post('/confirmToken', postConfirmToken);
 router.post('/forgot-password', postForgotPassword);
 router.post('/validateOTP', postValidateOTP);
- router.post('/reset-password', postResetPassword);
+router.post('/reset-password', postResetPassword);
+//router.post("/profile/:id", postUpdateDetails);
+
+
 // router.post('/update-details', postUpdateDetails);
 // router.post('/logout', postLogout);
 module.exports = router;

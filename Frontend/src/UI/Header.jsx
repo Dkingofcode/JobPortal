@@ -1,27 +1,37 @@
 import React from 'react';
 import Logo from '../assets/logo-with tag.png';
+import { useNavigate } from 'react-router-dom';
+
 
 
 const Header = () => {
+  const navigate = useNavigate();
+
+  const handleLogin = () => {
+   navigate('/login');
+    console.log('Login Button Clicked');
+  };
+
+
   return (
     <header className="bg-gray-100 shadow">
       <div className="container bg-gray-300 mx-auto px-4 py-3 flex justify-between items-center">
         {/* Logo or Brand Name */}
-        <a href="#" className="text-2xl font-bold text-gray-800"><img src={Logo} alt='logo image' /></a>
+        <a href="/" className="text-2xl font-bold text-gray-800"><img src={Logo} alt='logo image' /></a>
 
         {/* Navigation Links */}
         <nav className="hidden md:flex space-x-8">
           <a
-            href="#"
+            href="/profile"
             className="text-gray-700 hover:text-blue-500 font-medium transition"
           >
             Create Profile
           </a>
           <a
-            href="#"
+            href="post-job"
             className="text-gray-700 hover:text-blue-500 font-medium transition"
           >
-            Post Jobs
+            Post Job
           </a>
           <a
             href="#"
@@ -36,11 +46,11 @@ const Header = () => {
             Services
           </a>
               </nav>
-              
+
 
          <div className='hidden md:flex space-x-8'>
           <button
-            href="#"
+            onClick={handleLogin}
             className="text-gray-700  font-bold transition"
             >
             Login
@@ -54,7 +64,7 @@ const Header = () => {
           </button>
 
           <button
-            href="#"
+            href="/jobs"
             className="text-gray-50 bg-purple-600 border border-purple-600 font-bold p-2 rounded-md transition"
             >
             Apply For Jobs

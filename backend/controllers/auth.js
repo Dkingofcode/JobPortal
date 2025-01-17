@@ -31,7 +31,8 @@ module.exports = {
             user = new User({
                 username,
                 email,
-                password
+                password,
+                role: 'jobseeker'
             });
     
             // Hash password
@@ -68,7 +69,7 @@ module.exports = {
                 }
     
                 // Check password
-                const isMatch = await bcrypt.compare(password, user.password);
+                const isMatch = await bcrypt.compareSync(password, user.password);
                 if (!isMatch) {
                     return res.status(400).json({ msg: 'Invalid credentials' });
                 }

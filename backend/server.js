@@ -3,7 +3,12 @@ const mongoose = require('mongoose');
 const jobseekerRoutes = require('./routes/jobseeker');
 const employerRoutes = require('./routes/employer');
 const authRoutes = require('./routes/auth');
+const jobRoutes = require('./routes/jobs');
+const applicationRoutes = require('./routes/applications');
+
 const cors = require('cors');
+
+
 
 const app = express();
 app.use(express.json());
@@ -27,6 +32,8 @@ app.use(cors({
 
 app.use('/api/jobseeker', jobseekerRoutes);
 app.use('/api/employer', employerRoutes);
+app.use('/api', jobRoutes);
+app.use('/api', applicationRoutes);
 app.use('/api', authRoutes);
 
 
