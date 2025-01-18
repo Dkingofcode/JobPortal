@@ -38,8 +38,11 @@ getAllJobs: async (req, res) => {
 // Get a job by ID
  getJobById: async (req, res) => {
     try {
-        const jobId = req.params.id;
-        const job = await Job.findById(jobId).populate({
+        const { jobTitle, location }= req.query;
+        if(!jobTitle && !location) {
+            res.status(400).json({msg: "Bad request" });
+        }
+        const job = await Job.find({ title: jobTitle, location: location }).populate({
             path: "applications",
         });
         if (!job) {

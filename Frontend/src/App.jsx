@@ -11,7 +11,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Profile from './Pages/Profile';
 import Home from './Pages/Home';
 import PostJob from './Pages/CreateJob';
-import Jobs from './Pages/Jobs';
+import Jobs from './Pages/JobsPage';
 import Signup from './components/Auth/Signup';
 import Login from "./components/Auth/Login";
 import ForgotPassword from "./components/Auth/ForgotPassword";
@@ -19,6 +19,8 @@ import ForgotPassword from "./components/Auth/ForgotPassword";
 import { Navigate } from 'react-router-dom';
 import OtpValidation from './components/Auth/OtpValidation';
 import ResetPassword from "./components/Auth/ResetPassword";
+import CreateCompany from './Pages/Createcompany';
+import JobApplication from "./Pages/JobApplication";
 
 
 function App() {
@@ -39,6 +41,9 @@ function App() {
     return code ? children : <Navigate to="/OTPValidation" />;
   }
   
+
+
+
   return (
     <Router>
       <div>        
@@ -57,10 +62,12 @@ function App() {
               <Route path="/forgot-password" element={<ForgotPassword />} />
               <Route path="/OTPValidation" element={<OtpValidation />} />
               <Route path="/reset-password" element={<PasswordValidation><ResetPassword /></PasswordValidation>} />
-              <Route path="/" element={<PrivateRoute><Home /></PrivateRoute>} />
+              <Route path="/" element={<PrivateRoute  ><Home /></PrivateRoute>} />
               <Route path="/profile" element={<PrivateRoute><Profile /></PrivateRoute>} />
               <Route path="/post-job" element={<PrivateRoute><PostJob /></PrivateRoute>} />
               <Route path="/jobs" element={<PrivateRoute><Jobs /></PrivateRoute>} />
+              <Route path="/jobs/:jobId/apply" element={<PrivateRoute><JobApplication /></PrivateRoute>} />
+              <Route path="/company" element={<PrivateRoute><CreateCompany /></PrivateRoute>} />
 
            </Routes>
            

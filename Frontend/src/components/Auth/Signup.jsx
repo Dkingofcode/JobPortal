@@ -91,7 +91,8 @@ const Signup = () => {
                             className="w-full px-3 py-2 border border-gray-300 rounded-md"
                         />
                     </div>
-                    <button type="submit" className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600">Signup</button>
+                    <button type="submit"  className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600">Signup</button>
+                    <p>Already have an account? <a href='/login'>Log in</a></p>
                 </form>
             </div>
         </div>

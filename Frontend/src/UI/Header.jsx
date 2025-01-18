@@ -1,20 +1,34 @@
-import React from 'react';
+import React, { useContext} from 'react';
 import Logo from '../assets/logo-with tag.png';
 import { useNavigate } from 'react-router-dom';
-
+import  AuthContext  from "../context/AuthContext";
 
 
 const Header = () => {
   const navigate = useNavigate();
+  const { isAuthenticated, logout } = useContext(AuthContext);
+
 
   const handleLogin = () => {
    navigate('/login');
     console.log('Login Button Clicked');
   };
 
+  const handleLogout = () => {
+    logout();
+    navigate('/login');
+    console.log("User clicked Logout button");
+
+  }
+
+  const handleJobPage = () => {
+    navigate("/jobs");
+    console.log("All jobs Page");
+  }
+
 
   return (
-    <header className="bg-gray-100 shadow">
+    <header className="bg-gray-300 shadow">
       <div className="container bg-gray-300 mx-auto px-4 py-3 flex justify-between items-center">
         {/* Logo or Brand Name */}
         <a href="/" className="text-2xl font-bold text-gray-800"><img src={Logo} alt='logo image' /></a>
@@ -28,7 +42,7 @@ const Header = () => {
             Create Profile
           </a>
           <a
-            href="post-job"
+            href="/post-job"
             className="text-gray-700 hover:text-blue-500 font-medium transition"
           >
             Post Job
@@ -40,20 +54,20 @@ const Header = () => {
             Resume Builder
           </a>
           <a
-            href="#"
+            href="/company"
             className="text-gray-700 hover:text-blue-500 font-medium transition"
             >
-            Services
+            Register Company
           </a>
               </nav>
 
 
          <div className='hidden md:flex space-x-8'>
           <button
-            onClick={handleLogin}
+            onClick={isAuthenticated ? handleLogout : handleLogin}
             className="text-gray-700  font-bold transition"
             >
-            Login
+            {isAuthenticated === true ? "Logout" : "Login"}
           </button>
 
           <button
@@ -64,7 +78,7 @@ const Header = () => {
           </button>
 
           <button
-            href="/jobs"
+            onClick={handleJobPage}
             className="text-gray-50 bg-purple-600 border border-purple-600 font-bold p-2 rounded-md transition"
             >
             Apply For Jobs
@@ -97,16 +111,16 @@ const Header = () => {
       <div className="md:hidden">
         <nav className="bg-gray-100 px-4 py-2 space-y-2">
           <a
-            href="#"
+            href="/profile"
             className="block text-gray-700 hover:text-blue-500 font-medium transition"
           >
-            Career Fair
+            Create Profile
           </a>
           <a
-            href="#"
+            href="/post-job"
             className="block text-gray-700 hover:text-blue-500 font-medium transition"
           >
-            Skills Test
+            Create Jobs
           </a>
           <a
             href="#"
@@ -115,7 +129,7 @@ const Header = () => {
             Resume Builder
           </a>
           <a
-            href="#"
+            href="/jobs"
             className="block text-gray-700 hover:text-blue-500 font-medium transition"
           >
             Apply for Jobs

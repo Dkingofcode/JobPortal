@@ -5,6 +5,8 @@ const employerRoutes = require('./routes/employer');
 const authRoutes = require('./routes/auth');
 const jobRoutes = require('./routes/jobs');
 const applicationRoutes = require('./routes/applications');
+const profileRoutes = require('./routes/profile');
+const companyRoutes = require("./routes/company");
 
 const cors = require('cors');
 
@@ -34,6 +36,8 @@ app.use('/api/jobseeker', jobseekerRoutes);
 app.use('/api/employer', employerRoutes);
 app.use('/api', jobRoutes);
 app.use('/api', applicationRoutes);
+app.use('/api', profileRoutes);
+app.use('/api', companyRoutes);
 app.use('/api', authRoutes);
 
 

@@ -11,7 +11,7 @@ const sendOtp = require('../utils/sendOtp');
 const NodeCache = require('node-cache');
 const otpCache = new NodeCache({ stdTTL: 300, checkperiod: 600 });
 const user = require('../models/User');
-
+const company = require("../models/company");
 
 const Employer = user.findOne({ role: 'employer' });
 
@@ -22,14 +22,21 @@ module.exports = {
 // Create a new job
  postCreateJob: async (req, res) => {
  try {
-    const { title, description, requirements, salary, location, jobType, experience, position, companyId} = req.body;
+    const { title, description, requirements, salary, location, jobType, experience, position, companyName} = req.body;
+    
     const userId = req.id;
-    if (!title || !description || !requirements || !salary || !location || !jobType || !experience || !position || !companyId) {
+    const companyId = await  company.findOne({ name: companyName })
+    if (!title || !description || !requirements || !salary || !location || !jobType || !experience || !position ) {
     return res.status(400).json({
          message: 'Please fill all fields' 
-
     })
 };
+
+if(!companyId){
+ return res.status(400).json({
+    message: "Register your company"
+ })   
+}
 
         const job = await Job.create({
             title,
@@ -38,7 +45,7 @@ module.exports = {
             salary: Number(salary),
             location,
             jobType,
-            exprienceLevel: experience,
+            experienceLevel: experience,
             position,
             company: companyId,
             created_by: userId,

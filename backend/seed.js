@@ -62,7 +62,6 @@ const seedDatabase = async () => {
       return {
         title: faker.person.jobTitle(),
         description: faker.lorem.paragraph(),
-        company: faker.company.name(),
         location: faker.location.city(),
         salary: faker.number.int({ min: 30000, max: 150000 }),
         datePosted: faker.date.past(),

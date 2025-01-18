@@ -5,11 +5,11 @@ const { getAllCompanies, getCompany, getCompanyById, registerCompany, updateComp
 
 const router = express.Router();
 
-router.route("/register").post(isAuthenticated, registerCompany);
-router.route("/get").get(isAuthenticated, getCompany);
-router.route("/get/:id").get(isAuthenticated, getCompanyById);
-router.route("/update/:id").put(isAuthenticated, updateCompany);
-router.route("/allCompanies").get(getAllCompanies);
+router.post("/company",  registerCompany);
+//router.get("/company",  getCompany);
+router.get("/company/:id", getCompanyById);
+router.put("/company/:id",  updateCompany);
+router.get("/allCompanies",getAllCompanies);
 
 
 module.exports = router;

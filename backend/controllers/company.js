@@ -1,21 +1,30 @@
-import { Company } from "../models/company.model.js";
-import getDataUri from "../utils/datauri.js";
-import cloudinary from "../utils/cloudinary.js";
-export const registerCompany = async (req, resp) => {
+const  Company  = require("../models/company");
+//import getDataUri from "../utils/datauri.js";
+//import cloudinary from "../utils/cloudinary.js";
+const User = require("../models/User");
+
+module.exports = {
+
+ registerCompany: async (req, res) => {
     try {
-        const { companyName } = req.body;
-        // console.log(companyName);
+        const { companyName, email } = req.body;
+        console.log(req.body);
+        console.log(companyName);
+         console.log(email);
+        const user = await User.findOne({ email });
+        console.log(user);
+         const Userid= user.id;
 
         if (!companyName) {
-            return resp.status(400).json({
+            return res.status(400).json({
                 message: "Company name is required.",
                 success: false,
             });
         }
 
-        let company = await Company.findOne({ name: companyName });
+        let company = await Company.findOne({ name: companyName, userId: Userid });
         if (company) {
-            return resp.status(400).json({
+            return res.status(400).json({
                 message: "You can't register the same company.",
                 success: false,
             });
@@ -26,7 +35,7 @@ export const registerCompany = async (req, resp) => {
             userId: req.id, // Ensure req.id is set in your middleware
         });
 
-        return resp.status(201).json({
+        return res.status(201).json({
             message: "Company registered successfully.",
             company,
             success: true,
@@ -35,29 +44,30 @@ export const registerCompany = async (req, resp) => {
         console.error(error);
 
     }
-};
+},
 
-export const getCompany = async (req, resp) => {
-    try {
-        const userId = req.id;// logged in user id
-        const companies = await Company.find({ userId: userId });
-        if (!companies) {
-            return resp.status(404).json({
-                messsage: "companies not found",
-                success: false
-            });
-        }
-        return resp.status(200).json({
-            companies,
-            success: true
-        })
+//  getCompany: async (req, resp) => {
+//     try {
+//         const userId = req.id;// logged in user id
+//         const companies = await Company.find({ userId: userId });
+//         if (!companies) {
+//             return resp.status(404).json({
+//                 messsage: "companies not found",
+//                 success: false
+//             });
+//         }
+//         return resp.status(200).json({
+//             companies,
+//             success: true
+//         })
 
-    } catch (error) {
-        console.log(error);
+//     } catch (error) {
+//         console.log(error);
 
-    }
-}
-export const getCompanyById = async (req, resp) => {
+//     }
+// },
+
+getCompanyById: async (req, resp) => {
     try {
         const companyId = req.params.id;
         const company = await Company.findById(companyId);
@@ -75,9 +85,9 @@ export const getCompanyById = async (req, resp) => {
         console.log(error);
 
     }
-}
+},
 
-export const updateCompany = async (req, resp) => {
+ updateCompany: async (req, resp) => {
     try {
         const { name, description, website, location } = req.body;
         const file = req.file;
@@ -104,9 +114,9 @@ export const updateCompany = async (req, resp) => {
         console.log(error);
 
     }
-}
+},
 
-export const getAllCompanies = async (req, resp) => {
+ getAllCompanies: async (req, resp) => {
     try {
         const companies = await Company.find();
         if (!companies || companies.length === 0) {
@@ -126,4 +136,7 @@ export const getAllCompanies = async (req, resp) => {
             success: false,
         });
     }
-};
+}
+
+}
+

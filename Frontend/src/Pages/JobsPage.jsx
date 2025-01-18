@@ -1,18 +1,24 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
+
 
 const JobsPage = () => {
     const [jobs, setJobs] = useState([]);
     const [filteredJobs, setFilteredJobs] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [category, setCategory] = useState('');
+    const [appliedJobs, setAppliedJobs] = useState([]); // Track applied jobs
 
+    const navigate = useNavigate();
+    
     useEffect(() => {
         // Fetch jobs from an API or database
         const fetchJobs = async () => {
             const response = await fetch('http://localhost:5000/api/jobs');
             const data = await response.json();
-            setJobs(data);
-            setFilteredJobs(data);
+            console.log(data);
+            setJobs(data.jobs);
+            setFilteredJobs(data.jobs);
         };
 
         fetchJobs();
@@ -33,6 +39,14 @@ const JobsPage = () => {
 
         setFilteredJobs(filtered);
     }, [searchTerm, category, jobs]);
+
+    const handleApply = (job) => {
+        console.log(job);
+        navigate(`/jobs/${job.id}/apply`, { state: { job } });
+    //     if (!appliedJobs.includes(jobId)) {
+    //         setAppliedJobs([...appliedJobs, jobId]);
+    //     }
+    };
 
     return (
         <div className="container mx-auto p-4">
@@ -63,6 +77,16 @@ const JobsPage = () => {
                         <h2 className="text-2xl font-bold">{job.title}</h2>
                         <p className="text-gray-700">{job.description}</p>
                         <p className="text-gray-500">Category: {job.category}</p>
+                        <button
+                            onClick={() => handleApply(job)} // Pass a function reference
+                            className={`p-5 rounded-md font-bold text-xl ${
+                                appliedJobs.includes(job.id)
+                                    ? 'bg-purple-200 text-purple-600'
+                                    : 'bg-purple-600 text-white'
+                            }`}
+                        >
+                            {appliedJobs.includes(job.id) ? 'Applied' : 'Apply'}
+                        </button>
                     </li>
                 ))}
             </ul>

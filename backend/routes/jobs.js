@@ -11,7 +11,7 @@ const { getJobByCompanyId } = require("../controllers/jobs");
 
 
 router.get("/jobs", getAllJobs);
-router.get('/jobs/:id', getJobById);
+router.get('/jobs/view', getJobById);
 router.get('/employerjobs', getEmployerJobs);
 router.get('/jobs/company/:id', getJobByCompanyId);
 

@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+import { useNavigate, useNavigation } from "react-router-dom";
+
 
 const Profile = () => {
     const [profile, setProfile] = useState({
@@ -9,8 +12,10 @@ const Profile = () => {
         bio: '',
         company: '',
         position: '',
+        
     });
 
+    
     const handleChange = (e) => {
         const { name, value } = e.target;
         setProfile((prevProfile) => ({
@@ -19,9 +24,16 @@ const Profile = () => {
         }));
     };
 
-    const handleSubmit = (e) => {
+    const navigate = useNavigate();
+    
+    const handleSubmit = async (e) => {
         e.preventDefault();
         // Save profile logic here
+        const response = await axios.post(`http://localhost:5000/api/profile/`, profile);
+        if (response.data.user){
+            navigate("/");
+        }
+        console.log(response.data); 
         console.log('Profile saved:', profile);
     };
 

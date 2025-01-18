@@ -12,6 +12,25 @@ const Hero = () => {
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
 
+  // Fetch current location using Geolocation API
+  const fetchCurrentLocation = () => {
+    if (!navigator.geolocation) {
+      alert("Geolocation is not supported by your browser.");
+      return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const { latitude, longitude } = position.coords;
+        setLocation(`Lat: ${latitude}, Long: ${longitude}`);
+      },
+      (error) => {
+        console.error("Error fetching location:", error);
+        alert("Unable to fetch location. Please try again.");
+      }
+    );
+  };
+
   const handleSearch = async () => {
     if (!jobTitle && !location) {
       alert("Please enter a job title or location.");
@@ -21,14 +40,10 @@ const Hero = () => {
     setLoading(true);
 
     try {
-      // Adjust the API URL based on your backend endpoint
-      const response = await axios.get('/api/jobs', {
-        params: {
-          title: jobTitle,
-          location: location,
-        },
-      });
-      setResults(response.data);
+      const response = await axios.get(
+        `http://localhost:5000/api/jobs/view?jobTitle=${jobTitle}&location=${location}`
+      );
+      setResults(response.data.job);
     } catch (error) {
       console.error("Error fetching job results:", error);
       alert("Failed to fetch job results.");
@@ -39,13 +54,11 @@ const Hero = () => {
 
   return (
     <div>
-      <div className="hero text-center align-middle border border-gray-50 bg-gradient-to-b from-gray-200 to-gray-50 p-10">
-        <h1 className="font-bold text-lg text-4xl text-middle">
+      <div className="hero text-center border border-gray-50 bg-gradient-to-b from-gray-200 to-gray-50 p-10">
+        <h1 className="font-bold text-4xl">
           Find your <span className="text-purple-600">new job</span> today
         </h1>
-        <p>
-          Thousands of jobs in the computer, engineering and technology sectors are waiting for you
-        </p>
+        <p>Thousands of jobs are waiting for you in technology and engineering.</p>
 
         <div className="search-box flex items-center justify-center gap-4 mt-4">
           {/* Job Title Input */}
@@ -70,6 +83,12 @@ const Hero = () => {
               placeholder="Location"
               className="outline-none bg-transparent flex-grow"
             />
+            <button
+              onClick={fetchCurrentLocation}
+              className="bg-purple-600 text-white px-2 py-1 rounded ml-2"
+            >
+              Use My Location
+            </button>
           </div>
 
           {/* Search Button */}
@@ -85,21 +104,26 @@ const Hero = () => {
         {loading && <p className="mt-4">Searching for jobs...</p>}
 
         {/* Search Results */}
-        <div className="mt-8">
+        <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {results.length > 0 ? (
-            <ul>
-              {results.map((job) => (
-                <li
-                  key={job._id}
-                  className="border border-gray-300 p-4 rounded-md mb-2"
-                >
-                  <h3 className="text-lg font-bold">{job.title}</h3>
-                  <p>{job.company}</p>
-                  <p>{job.location}</p>
-                  <p>Salary: ${job.salary}</p>
-                </li>
-              ))}
-            </ul>
+            results.map((job) => (
+              <div
+                key={job._id}
+                className="bg-white shadow-md rounded-md p-4 border border-gray-200"
+              >
+                <h3 className="text-xl font-bold mb-2">{job.title}</h3>
+                <p className="text-gray-700 mb-2">{job.company}</p>
+                <p className="text-gray-500 mb-2">
+                  <strong>Location:</strong> {job.location}
+                </p>
+                <p className="text-gray-500 mb-2">
+                  <strong>Salary:</strong> ${job.salary}
+                </p>
+                <button className="bg-purple-600 text-white py-2 px-4 rounded-md mt-2">
+                  Apply Now
+                </button>
+              </div>
+            ))
           ) : (
             !loading && <p>No jobs found. Try adjusting your search.</p>
           )}

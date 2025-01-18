@@ -4,6 +4,9 @@ import React, { useState, useContext } from 'react';
 import {useNavigate} from 'react-router-dom';
 //import Cookies from 'js-cookie'; // For cookie storage (optional, can use LocalStorage or SessionStorage)
 import AuthContext from '../../context/AuthContext';
+import { ToastContainer, toast }  from "react-toastify";
+import Loader from '../Loader/loader';
+
 
 const Login = () => {
     // useEffect(() => {
@@ -19,22 +22,34 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const { login } = useContext(AuthContext);
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
    // const cookies = new Cookies();
-
+   const notify = toast("Invalid email or password");
+   const serverPing = toast("Server error, pls check your connection"); 
    // const [user, setUser] = useState(null);
     // const [userType, setUserType] = useState('jobseeker');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
         // Handle login logic here
         try{
             await login(email, password);
+            setLoading(true);
               navigate('/');     
                 
         }catch(error){
+            if(error.response.status === "400"){
+                notify();
+            }
+
+            if(error.response.status === "500") {
+                serverPing();
+            }
             console.log(error);
         }
+        setLoading(false);
                 // Store the token securely (choose one storage method)
                // localStorage.setItem('token', token);
                 // sessionStorage.setItem('authToken', token); // Option 2: SessionStorage
@@ -88,9 +103,14 @@ const Login = () => {
                     <button type="submit" className="w-full px-4 py-2 font-medium text-white bg-indigo-600 rounded hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                         Login
                     </button>
+                    <div className="flex">
                     <a href='/forgot-password'>Forgot Password</a>
+                    <p>Don&apos;t have an account,</p><a href="/signup">Signup</a>
+                    </div>
+
                 </form>
             </div>
+            <ToastContainer  />
         </div>
     );
 };
