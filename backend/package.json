@@ -23,6 +23,7 @@
     "start": "node server.js",
     "server": "nodemon server.js",
     "test": "jest --watchAll --verbose",
-    "seed": "node seed.js"
+    "seed": "node seed.js",
+    "build": "npm install"
   }
 }
