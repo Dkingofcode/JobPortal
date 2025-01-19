@@ -37,15 +37,22 @@ const Hero = () => {
       alert("Please enter a job title or location.");
       return;
     }
-
+  
     setLoading(true);
     setSearchTriggered(true); // Mark that a search has been triggered
-
+  
     try {
+      // Build query string dynamically
+      const queryParams = [];
+      if (jobTitle) queryParams.push(`jobTitle=${encodeURIComponent(jobTitle)}`);
+      if (location) queryParams.push(`location=${encodeURIComponent(location)}`);
+      const queryString = queryParams.join("&");
+  
+      // Make API request
       const response = await axios.get(
-        `https://jobportalbackend-uztv.onrender.com/api/jobs/view?jobTitle=${jobTitle}&location=${location}`
+        `https://jobportalbackend-uztv.onrender.com/api/jobs/view?${queryString}`
       );
-      setResults(response.data.job);
+      setResults(response.data.job || []);
     } catch (error) {
       console.error("Error fetching job results:", error);
       alert("Failed to fetch job results.");
@@ -53,6 +60,29 @@ const Hero = () => {
       setLoading(false);
     }
   };
+  
+
+  // const handleSearch = async () => {
+  //   if (!jobTitle && !location) {
+  //     alert("Please enter a job title or location.");
+  //     return;
+  //   }
+
+  //   setLoading(true);
+  //   setSearchTriggered(true); // Mark that a search has been triggered
+
+  //   try {
+  //     const response = await axios.get(
+  //       `https://jobportalbackend-uztv.onrender.com/api/jobs/view?jobTitle=${jobTitle}&location=${location}`
+  //     );
+  //     setResults(response.data.job);
+  //   } catch (error) {
+  //     console.error("Error fetching job results:", error);
+  //     alert("Failed to fetch job results.");
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
   return (
     <div>
