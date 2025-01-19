@@ -7,7 +7,7 @@ const Signup = () => {
     const navigate = useNavigate();
 
     const api = axios.create({
-        baseURL: 'http://localhost:5000', // Replace with your backend URL
+        baseURL: 'https://jobportal-3-1vi0.onrender.com', // Replace with your backend URL
       });
 
     const [formData, setFormData] = useState({
@@ -29,7 +29,7 @@ const Signup = () => {
         e.preventDefault();
         // Add form submission logic here
         try { 
-        const result = await api.post('http://localhost:5000/api/signup', formData); 
+        const result = await api.post('https://jobportal-3-1vi0.onrender.com/api/signup', formData); 
             console.log('Signup successful', result.data);
         }catch(error) {
             console.error('There was an error signing up!', error);
