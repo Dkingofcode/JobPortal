@@ -13,6 +13,10 @@ const Header = () => {
     setMobileMenuOpen((prev) => !prev);
   };
 
+  const handleResume = () => {
+     navigate('/resume');
+  }
+
   const handleLogin = () => {
     navigate('/login');
     console.log('Login Button Clicked');
@@ -74,7 +78,7 @@ const Header = () => {
             {isAuthenticated ? 'Logout' : 'Login'}
           </button>
           <button
-          onClick={navigate("/resume")}
+          onClick={handleResume}
             className="text-purple-700 font-bold border border-purple-400 p-2 rounded-md transition"
           >
             Resume Builder
