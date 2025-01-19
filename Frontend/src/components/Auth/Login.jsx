@@ -94,10 +94,11 @@ const Login = () => {
                         </select>
                     </div> */}
 
+                       
                     <button type="submit" className="w-full px-4 py-2 font-medium text-white bg-indigo-600 rounded hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                         Login
                     </button>
-                    <div className="flex">
+                    <div className="flex flex-wrap">
                     <a href='/forgot-password'>Forgot Password</a>
                     <p>Don&apos;t have an account</p><a className='border border-blue-600 rounded-lg p-10' href="/signup">Signup</a>
                     </div>
