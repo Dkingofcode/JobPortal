@@ -14,7 +14,7 @@ export const AuthProvider = ({ children }) => {
   // Function to handle login
   const login = async (email, password) => {
     try {
-      const response = await axios.post("https://jobportal-3-1vi0.onrender.com/api/login", {
+      const response = await axios.post("http://localhost:8000/api/login", {
         email,
         password,
       });
