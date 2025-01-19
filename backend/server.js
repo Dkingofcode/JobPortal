@@ -25,8 +25,8 @@ mongoose.connect(dbURI, {
 .catch((err) => console.error('MongoDB connection error:', err));
 
 const allowedOrigins = [
-    'http://localhost:5173', // local development
-    'https://job-portal-theta-inky.vercel.app' // Vercel deployment
+     // local development
+    'https://jobportal-3-1vi0.onrender.com' // Vercel deployment
 ];
 
 // Enable CORS for all origins
