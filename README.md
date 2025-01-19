@@ -33,5 +33,5 @@ To get the application up and running locally, follow these steps:
    ```bash
    npm run dev
 
-![ScreenShot](./assets/JobPortalImageFile.jpg)   
+![ScreenShot](./Frontend/src/assets/JobPortalImageFile.jpg)   
    
