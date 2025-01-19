@@ -25,6 +25,7 @@ const Login = () => {
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
    // const cookies = new Cookies();
+   const success = toast("Login successful");
    const notify = toast("Invalid email or password");
    const serverPing = toast("Server error, pls check your connection"); 
    // const [user, setUser] = useState(null);
@@ -37,16 +38,11 @@ const Login = () => {
         try{
             await login(email, password);
             setLoading(true);
+            success();
               navigate('/');     
                 
         }catch(error){
-            if(error.response.status === "400"){
-                notify();
-            }
-
-            if(error.response.status === "500") {
-                serverPing();
-            }
+            notify();
             console.log(error);
         }
         setLoading(false);
