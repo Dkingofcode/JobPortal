@@ -11,6 +11,7 @@ const Hero = () => {
   const [location, setLocation] = useState("");
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [searchTriggered, setSearchTriggered] = useState(false); // New state
 
   // Fetch current location using Geolocation API
   const fetchCurrentLocation = () => {
@@ -38,6 +39,7 @@ const Hero = () => {
     }
 
     setLoading(true);
+    setSearchTriggered(true); // Mark that a search has been triggered
 
     try {
       const response = await axios.get(
@@ -105,7 +107,10 @@ const Hero = () => {
 
         {/* Search Results */}
         <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {results.length > 0 ? (
+          {searchTriggered && results.length === 0 && !loading && (
+            <p>No jobs found. Try adjusting your search.</p>
+          )}
+          {results.length > 0 &&
             results.map((job) => (
               <div
                 key={job._id}
@@ -123,10 +128,7 @@ const Hero = () => {
                   Apply Now
                 </button>
               </div>
-            ))
-          ) : (
-            !loading && <p>No jobs found. Try adjusting your search.</p>
-          )}
+            ))}
         </div>
 
         {/* Hero Images */}
