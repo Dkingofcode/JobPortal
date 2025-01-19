@@ -128,6 +128,12 @@ const Header = () => {
               Create Profile
             </a>
             <a
+              href="/company"
+              className="block text-gray-700 hover:text-blue-500 font-medium transition"
+            >
+              Create Company
+            </a>
+            <a
               href="/post-job"
               className="block text-gray-700 hover:text-blue-500 font-medium transition"
             >

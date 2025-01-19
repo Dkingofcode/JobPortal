@@ -21,7 +21,7 @@ import OtpValidation from './components/Auth/OtpValidation';
 import ResetPassword from "./components/Auth/ResetPassword";
 import CreateCompany from './Pages/Createcompany';
 import JobApplication from "./Pages/JobApplication";
-
+import ResumeBuilder from './Pages/ResumeBuilder';
 
 function App() {
   //const [count, setCount] = useState(0);
@@ -68,6 +68,7 @@ function App() {
               <Route path="/jobs" element={<PrivateRoute><Jobs /></PrivateRoute>} />
               <Route path="/jobs/:jobId/apply" element={<PrivateRoute><JobApplication /></PrivateRoute>} />
               <Route path="/company" element={<PrivateRoute><CreateCompany /></PrivateRoute>} />
+              <Route path="/resume" element={<PrivateRoute><ResumeBuilder /></PrivateRoute>} />
 
            </Routes>
            

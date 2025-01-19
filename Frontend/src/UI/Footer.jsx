@@ -9,7 +9,7 @@ import LinkedInIcon from "../assets/Vector (2).png";
 
 const Footer = () => {
   return (
-    <div className='bg-purple-950 text-white flex justify-between items-center pt-20 pb-20 pl-10 pr-10'>
+    <div className='bg-purple-950 text-white flex flex-wrap justify-between items-center pt-20 pb-20 pl-10 pr-10'>
 
       <div>
       <img className='w-22 h-22 p-3' src={Logo} />

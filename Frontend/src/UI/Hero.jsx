@@ -60,7 +60,7 @@ const Hero = () => {
         </h1>
         <p>Thousands of jobs are waiting for you in technology and engineering.</p>
 
-        <div className="search-box flex items-center justify-center gap-4 mt-4">
+        <div className="search-box flex items-center flex-wrap justify-center gap-4 mt-4">
           {/* Job Title Input */}
           <div className="border bg-slate-50 border-gray-400 flex items-center p-2 rounded-md">
             <img src={searchIcon} alt="Search icon" className="mr-2" />
