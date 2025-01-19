@@ -76,7 +76,7 @@ const JobsPage = () => {
                     <li key={job.id} className="border border-gray-300 p-4 rounded shadow">
                         <h2 className="text-2xl font-bold">{job.title}</h2>
                         <p className="text-gray-700">{job.description}</p>
-                        <p className="text-gray-500">Category: {job.category}</p>
+                        {/* <p className="text-gray-500">Category: {job.category}</p> */}
                         <p className="text-gray-500">Location: {job.location}</p>
                         <button
                             onClick={() => handleApply(job)} // Pass a function reference
