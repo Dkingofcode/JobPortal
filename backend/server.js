@@ -10,8 +10,6 @@ const companyRoutes = require("./routes/company");
 
 const cors = require('cors');
 
-
-
 const app = express();
 app.use(express.json());
 
@@ -26,12 +24,23 @@ mongoose.connect(dbURI, {
 .then(() => console.log('Connected to MongoDB'))
 .catch((err) => console.error('MongoDB connection error:', err));
 
+const allowedOrigins = [
+    'http://localhost:5173', // local development
+    'https://job-portal-theta-inky.vercel.app' // Vercel deployment
+];
 
 // Enable CORS for all origins
 app.use(cors({
-    origin: 'http://localhost:5173', // Replace with your frontend's URL
+    origin: (origin, callback) => {
+        if (!origin || allowedOrigins(origin)){
+            callback(null, true);
+        }else{
+            callback(new Error('Origin not allowed by CORS'));
+        }
+    },
     methods: 'GET,POST,PUT,DELETE,OPTIONS', // Allowed methods
     allowedHeaders: 'Content-Type,Authorization', // Allowed headers
+    credentials: true // Allow cookies
 }));
 
 // Or simply:
