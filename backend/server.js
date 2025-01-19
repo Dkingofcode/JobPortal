@@ -16,7 +16,7 @@ const app = express();
 app.use(express.json());
 
 
-const dbURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/job-portal';
+const dbURI = process.env.MONGO_URI_TEST;
 
  
 mongoose.connect(dbURI, {
