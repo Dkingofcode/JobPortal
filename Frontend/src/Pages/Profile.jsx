@@ -29,7 +29,7 @@ const Profile = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         // Save profile logic here
-        const response = await axios.post(`http://localhost:5000/api/profile/`, profile);
+        const response = await axios.post(`https://jobportalbackend-uztv.onrender.com/api/profile/`, profile);
         if (response.data.user){
             navigate("/");
         }

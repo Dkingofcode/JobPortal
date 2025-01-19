@@ -34,7 +34,7 @@ const CreateJob = () => {
         };
 
         try {
-            const response = await axios.post("http://localhost:5000/api/employer/job", jobData);
+            const response = await axios.post("https://jobportalbackend-uztv.onrender.com/api/employer/job", jobData);
             if (response.data.job) {
                 console.log('Job successfully posted:', response.data.job);
                 navigate('/jobs');

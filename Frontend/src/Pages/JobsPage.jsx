@@ -14,7 +14,7 @@ const JobsPage = () => {
     useEffect(() => {
         // Fetch jobs from an API or database
         const fetchJobs = async () => {
-            const response = await fetch('http://localhost:5000/api/jobs');
+            const response = await fetch('https://jobportalbackend-uztv.onrender.com/api/jobs');
             const data = await response.json();
             console.log(data);
             setJobs(data.jobs);

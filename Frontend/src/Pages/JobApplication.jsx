@@ -34,7 +34,7 @@ const JobApplication = () => {
         // Handle form submission logic here
          try{
 
-             const response  = await(`http://localhost:5000/api/application/apply/678b1e9df74b33ce6be63b7d`, formData.email, formData.name, formData.cover, formData.resume)
+             const response  = await(`https://jobportalbackend-uztv.onrender.com/api/application/apply/678b1e9df74b33ce6be63b7d`, formData.email, formData.name, formData.cover, formData.resume)
              if(response){
                 console.log(response);
                  console.log('Form submitted');

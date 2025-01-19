@@ -1,7 +1,7 @@
 import React from 'react';
-import { ReactComponent as FileIcon } from '../assets/fileIcon.svg';
-import { ReactComponent as OfferIcon } from '../assets/offerIcon.svg';
-import { ReactComponent as AcceptIcon } from '../assets/acceptIcon.svg';
+import FileIcon from "../assets/icons8-image-file-50.png";
+import OfferIcon from "../assets/icons8-offer-hot-price-50.png";
+import AcceptIcon from "../assets/icons8-accept-50.png";
 
 const Process = () => {
   return (
@@ -10,7 +10,7 @@ const Process = () => {
       <div className='flex flex-col md:flex-row justify-around items-center space-y-8 md:space-y-0 md:space-x-8'>
         <div className='step flex flex-col items-center text-center'>
           <div className='w-20 h-20 mb-4 flex items-center justify-center border border-gray-300 bg-green-200 p-5 rounded-full'>
-            <FileIcon className='w-full h-full' />
+            <img src={FileIcon} className='w-full h-full' />
           </div>
           <h4 className='font-bold text-lg mb-2'>STEP 1: COMPLETE PROFILE</h4>
           <p className='text-gray-700'>
@@ -20,7 +20,7 @@ const Process = () => {
 
         <div className='step flex flex-col items-center text-center'>
           <div className='w-20 h-20 mb-4 flex items-center justify-center border border-gray-300 bg-gray-700 p-5 rounded-full'>
-            <OfferIcon className='w-full h-full text-white' />
+            <img src={OfferIcon} className='w-full h-full text-white' />
           </div>
           <h4 className='font-bold text-lg mb-2'>STEP 2: RECEIVE JOB OFFERS</h4>
           <p className='text-gray-700'>
@@ -30,7 +30,7 @@ const Process = () => {
 
         <div className='step flex flex-col items-center text-center'>
           <div className='w-20 h-20 mb-4 flex items-center justify-center border border-gray-300 bg-green-200 p-5 rounded-full'>
-            <AcceptIcon className='w-full h-full' />
+            <img src={AcceptIcon} className='w-full h-full' />
           </div>
           <h4 className='font-bold text-lg mb-2'>STEP 3: ACCEPT DREAM JOB</h4>
           <p className='text-gray-700'>

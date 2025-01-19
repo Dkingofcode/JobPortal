@@ -14,7 +14,7 @@ export const AuthProvider = ({ children }) => {
   // Function to handle login
   const login = async (email, password) => {
     try {
-      const response = await axios.post("http://localhost:8000/api/login", {
+      const response = await axios.post("https://jobportalbackend-uztv.onrender.com/api/login", {
         email,
         password,
       });
@@ -43,7 +43,7 @@ export const AuthProvider = ({ children }) => {
   const validateToken = async (currentToken) => {
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/confirmToken",{token: currentToken},
+        "https://jobportalbackend-uztv.onrender.com/api/confirmToken",{token: currentToken},
       );
       setUser(response.data); // Set user details from the response
       setIsAuthenticated(true);

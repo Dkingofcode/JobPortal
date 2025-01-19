@@ -17,7 +17,7 @@ const ResetPassword = () => {
         } else {
             // Handle password reset logic here
             const resetToken = localStorage.getItem('resetToken');
-            const response = axios.post("http://localhost:5000/api/reset-password", { resetToken, newPassword });
+            const response = axios.post("https://jobportalbackend-uztv.onrender.com/api/reset-password", { resetToken, newPassword });
             console.log(response);
             if(response){
                 navigate("/login");

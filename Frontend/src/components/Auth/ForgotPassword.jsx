@@ -10,7 +10,7 @@ const ForgotPassword = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         // Add logic to handle password reset request
-      const response =  await axios.post("https://jobportal-3-1vi0.onrender.com/api/forgot-password", { email });
+      const response =  await axios.post("https://jobportalbackend-uztv.onrender.com/api/forgot-password", { email });
         localStorage.setItem('email', email);
         console.log(response);
         const { resetToken } = response.data;

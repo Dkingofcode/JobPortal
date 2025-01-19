@@ -14,7 +14,7 @@ const CreateCompany = () => {
             alert('Company Name is required');
             return;
         }
-        const response = await axios.post("http://localhost:5000/api/company", companyName, email);
+        const response = await axios.post("https://jobportalbackend-uztv.onrender.com/api/company", companyName, email);
         const notify = toast("Company registered successfully");
         if(response){
          notify();

@@ -18,7 +18,7 @@ const OtpValidation = () => {
         // Add your OTP validation logic here
         localStorage.setItem('code', otp);
         try {
-          const response =  await axios.post("http://localhost:5000/api/validateOTP", { email, otp });
+          const response =  await axios.post("https://jobportalbackend-uztv.onrender.com/api/validateOTP", { email, otp });
           console.log(response);
           if (response.status === 200){
             navigate('/reset-password'); // Redirect to reset password page

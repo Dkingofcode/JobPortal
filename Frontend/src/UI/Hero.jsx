@@ -41,7 +41,7 @@ const Hero = () => {
 
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/jobs/view?jobTitle=${jobTitle}&location=${location}`
+        `https://jobportalbackend-uztv.onrender.com/api/jobs/view?jobTitle=${jobTitle}&location=${location}`
       );
       setResults(response.data.job);
     } catch (error) {

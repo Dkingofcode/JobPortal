@@ -5,7 +5,7 @@ import {useNavigate} from 'react-router-dom';
 //import Cookies from 'js-cookie'; // For cookie storage (optional, can use LocalStorage or SessionStorage)
 import AuthContext from '../../context/AuthContext';
 import { ToastContainer, toast }  from "react-toastify";
-import Loader from '../Loader/loader';
+//import Loader from '../Loader/loader';
 
 
 const Login = () => {
@@ -25,9 +25,9 @@ const Login = () => {
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
    // const cookies = new Cookies();
-   const success = toast("Login successful");
-   const notify = toast("Invalid email or password");
-   const serverPing = toast("Server error, pls check your connection"); 
+   //const success = toast("Login successful");
+   //const notify = toast("Invalid email or password");
+  // const serverPing = toast("Server error, pls check your connection"); 
    // const [user, setUser] = useState(null);
     // const [userType, setUserType] = useState('jobseeker');
 
@@ -38,11 +38,9 @@ const Login = () => {
         try{
             await login(email, password);
             setLoading(true);
-            success();
-              navigate('/');     
+            navigate('/');
                 
         }catch(error){
-            notify();
             console.log(error);
         }
         setLoading(false);
