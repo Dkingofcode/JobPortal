@@ -99,7 +99,7 @@ const Login = () => {
                     </button>
                     <div className="flex">
                     <a href='/forgot-password'>Forgot Password</a>
-                    <p>Don&apos;t have an account,</p><a href="/signup">Signup</a>
+                    <p>Don&apos;t have an account</p><a className='border border-blue-600 rounded-lg p-10' href="/signup">Signup</a>
                     </div>
 
                 </form>
