@@ -74,6 +74,7 @@ const Header = () => {
             {isAuthenticated ? 'Logout' : 'Login'}
           </button>
           <button
+          onClick={navigate("/resume")}
             className="text-purple-700 font-bold border border-purple-400 p-2 rounded-md transition"
           >
             Resume Builder
