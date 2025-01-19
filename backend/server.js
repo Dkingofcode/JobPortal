@@ -26,7 +26,7 @@ mongoose.connect(dbURI, {
 
 const allowedOrigins = [
      // local development
-    'https://jobportal-3-1vi0.onrender.com' // Vercel deployment
+    'https://job-portal-theta-inky.vercel.app' // Vercel deployment
 ];
 
 // Enable CORS for all origins
