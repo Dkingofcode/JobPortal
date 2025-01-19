@@ -145,7 +145,7 @@ const Header = () => {
               Post Job
             </a>
             <a
-              href="#"
+              href="/resume"
               className="block text-gray-700 hover:text-blue-500 font-medium transition"
             >
               Resume Builder
